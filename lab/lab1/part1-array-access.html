@@ -58,7 +58,8 @@
 
     var map = L.map('map', {
       center: [39.9522, -75.1639],
-      zoom: 14
+      zoom: 13
+
     });
 
     var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
@@ -75,9 +76,18 @@
 
     ===================== */
 
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
-    L.marker([0, 0]).addTo(map);
+    var restaurantData = [[39.941312, -75.1544847, 'Bistro La Minette'],
+                          [39.961043, -75.170176, 'Gyu-kaku'],
+                          [39.955893, -75.156797, 'Ocean Habour']];
+    restaurantData.push([39.960364,-75.1714217, 'Doma']);
+    restaurantData.push([39.9502296,-75.2119407, 'UTown']);
+
+    function addMarker(obj) {
+      L.marker([obj[0], obj[1]]).addTo(map).bindPopup(obj[2]);
+    }
+
+    restaurantData.map(addMarker);
+
 
     /* =====================
 

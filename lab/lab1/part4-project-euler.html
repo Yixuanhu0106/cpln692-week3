@@ -25,14 +25,42 @@
 
     ===================== */
 
-
     /* =====================
 
     Start code
 
     ===================== */
+    //Problem 1
+    //Logic: store all the numbers meeting the critiria in an array and sum it
+    var sum = 0;
+    for (var i = 0; i < 1000; i++){
+      if ( i % 3 === 0 || i % 5 === 0){
+        sum += i;
+      }
+    }
+    console.log(sum);
 
+    //Problem 2
+    //Logic: get a Fibonacci sequence and find the sum
+    var Fib = [1, 2];
 
+    while(Fib[Fib.length - 1] < 4000000) {
+      var a = Fib[Fib.length - 1];
+      var b = Fib[Fib.length - 2];
+      if( a+b >= 4000000) {
+        break;
+      }
+      Fib.push(a+b);
+    }
+    console.log(Fib);
+
+    var sum02 = 0;
+    Fib.forEach(function(e) {
+      if( e%2 === 0){
+        sum02 += e;
+      }
+    })
+    console.log(sum02);
 
     /* =====================
 

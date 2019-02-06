@@ -13,14 +13,14 @@
 
     <!--javascript imports-->
     <script src="leaflet.js"></script>
-    <script src="part4-data-clean.js"></script>
-    <script src="part4-data-dirty.js"></script>
+    <script src="part3-data-clean.js"></script>
+    <script src="part3-data-dirty.js"></script>
 
     <script>
 
     /* =====================
 
-    # Lab 1, Part 4 — Data Transformation
+    # Lab 1, Part 3 — Data Transformation
 
     ## Introduction
 
@@ -28,7 +28,7 @@
     data from OpenDataPhilly (https://www.opendataphilly.org/dataset/bike-share-stations).
 
     We have converted the data from OpenDataPhilly into an array of arrays
-    similar to part3. However, our arrays for bike share data have an extra data
+    similar to part2??. However, our arrays for bike share data have an extra data
     point:
 
     1. lat
@@ -63,13 +63,29 @@
 
     ===================== */
 
-    var data = bikeArrayClean;
+    var data = bikeArrayDirty;
 
     /* =====================
 
     Start code to filter data
 
     ===================== */
+
+    //Clean the dataset: 1. change coordinate to number; 2. eliminate 'stations'
+    for (var i in data) {
+      data[i][0] = parseFloat(data[i][0]);
+      data[i][1] = parseFloat(data[i][1]);
+      data[i][3] = parseInt(data[i][3]);
+      //console.log(data[i]);
+    }
+
+    var dataFiltered = [];
+    for (var i in data) {
+      if (data[i][3] > 20) {
+        dataFiltered.push(data[i]);
+      }
+    }
+    console.log(dataFiltered);
 
 
 
@@ -97,6 +113,10 @@
     Start code to add markers to map
 
     ===================== */
+
+    for (var i in dataFiltered) {
+      L.marker([dataFiltered[i][1], dataFiltered[i][0]]).addTo(map).bindPopup(dataFiltered[i][2]);
+    }
 
 
 
